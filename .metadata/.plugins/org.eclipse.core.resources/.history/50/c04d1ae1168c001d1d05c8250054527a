@@ -1,0 +1,5 @@
+package com.sacumen.exceptions;
+
+public class UserNotFoundException {
+
+}

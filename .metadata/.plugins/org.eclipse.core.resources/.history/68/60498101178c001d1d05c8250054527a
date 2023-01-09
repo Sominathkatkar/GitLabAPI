@@ -1,0 +1,22 @@
+package com.sacumen.exceptions;
+
+public class UserNotFoundException implements Runnable {
+
+	
+	
+	
+	public UserNotFoundException(String s) {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	
+
+}

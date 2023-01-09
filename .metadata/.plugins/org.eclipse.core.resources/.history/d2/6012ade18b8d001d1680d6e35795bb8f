@@ -1,0 +1,13 @@
+package com.sacumen.model;
+
+public class Namespace {
+private Integer id;
+private String name;
+private String path;
+private String kind;
+private String full_path;
+private Integer parent_id;
+private String navatar_urlame;
+private String web_url;
+
+}

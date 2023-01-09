@@ -1,0 +1,17 @@
+package com.sacumen.service;
+
+import java.util.List;
+
+import com.sacumen.exceptions.UserNotFoundException;
+import com.sacumen.model.Project;
+import com.sacumen.model.User;
+
+public interface GitlabServiceI {
+	
+	public List<User> getUsers();
+	
+	public List<Project> getProjects();
+	
+	public String getProjectById(int id);
+
+}

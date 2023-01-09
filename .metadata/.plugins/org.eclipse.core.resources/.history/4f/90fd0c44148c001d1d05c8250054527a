@@ -1,0 +1,5 @@
+package com.sacumen.service;
+
+public interface GitlabServiceI {
+
+}

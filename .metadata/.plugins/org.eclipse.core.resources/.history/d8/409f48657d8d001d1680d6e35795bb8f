@@ -1,0 +1,63 @@
+package com.sacumen.service;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+
+@Service
+public class GitlabServiceIMPL implements GitlabServiceI {
+
+	@Override
+	public List<Object> getUsers() {
+		String uri = "https://gitlab.com/api/v4/users";
+		String authToken="glpat-1ceSKTnRh21aC9ZzFcik";
+		List<Object> list=null;
+	try {
+		RestTemplate restTemplate = new RestTemplate();
+		 HttpHeaders headers = new HttpHeaders();
+         headers.add("Authorization", "Bearer "+authToken );
+         HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+        ResponseEntity<Object[]> users = restTemplate.exchange(uri, HttpMethod.GET, entity, Object[].class);
+	//Object[] users = restTemplate.getForObject(uri, Object[].class);
+	    list = Arrays.asList(users);
+	}
+	catch(Exception e) {
+		e.printStackTrace();
+	}
+		return list;
+
+	}
+
+	@Override
+	public List<Object> getProjects() {
+		String uri = "https://gitlab.com/api/v4/projects";
+		List<Object> projectslist=null;
+		try {
+		RestTemplate restTemplate1 = new RestTemplate();
+		Object[] projects = restTemplate1.getForObject(uri, Object[].class);
+		 projectslist = Arrays.asList(projects);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return projectslist;
+
+	}
+
+	@Override
+	public String getProjectById(int id) {
+		String uri = "https://gitlab.com/api/v4/projects/" + id;
+		System.out.println("uri:" + uri);
+		RestTemplate resttemplate = new RestTemplate();
+		String project = resttemplate.getForObject(uri, String.class);
+		return project;
+	}
+
+}

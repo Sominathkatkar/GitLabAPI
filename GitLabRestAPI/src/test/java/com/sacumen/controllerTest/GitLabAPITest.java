@@ -1,0 +1,62 @@
+package com.sacumen.controllerTest;
+
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+
+import com.sacumen.controller.GitLabApiController;
+import com.sacumen.model.Project;
+import com.sacumen.model.User;
+import com.sacumen.service.GitlabServiceI;
+
+@WebMvcTest(controllers = GitLabApiController.class)
+@AutoConfigureMockMvc(addFilters = false)
+
+public class GitLabAPITest {
+	@Autowired
+	private MockMvc mvc;
+	@MockBean
+	private GitlabServiceI service;
+
+	private List<Project> projects;
+	private List<User> users;
+	
+
+	@Autowired
+	private WebApplicationContext webApplicationContext;
+
+	
+	@Before
+	public void setup() {
+		mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+	}
+
+	@Test
+	public void testGetAllProjects() throws Exception {
+		Mockito.when(service.getProjects()).thenReturn(projects);
+		mvc.perform(MockMvcRequestBuilders.get("/GitLabApiController/projects").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(MockMvcResultMatchers.status().isOk());
+	
+	}
+
+	@Test
+	public void testGetAllUsers() throws Exception {
+		Mockito.when(service.getUsers()).thenReturn(users);
+		mvc.perform(MockMvcRequestBuilders.get("/GitLabApiController/users").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(MockMvcResultMatchers.status().isOk());
+	}
+
+}

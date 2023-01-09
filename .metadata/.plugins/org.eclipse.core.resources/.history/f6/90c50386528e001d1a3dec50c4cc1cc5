@@ -1,0 +1,89 @@
+package com.sacumen.serviceTest;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.web.client.RestTemplate;
+
+import com.sacumen.controller.GitLabApiController;
+import com.sacumen.model.Project;
+import com.sacumen.model.User;
+import com.sacumen.service.GitlabServiceI;
+
+@WebMvcTest(controllers = GitLabApiController.class)
+@AutoConfigureMockMvc(addFilters = false)
+//@SpringBootTest
+
+public class GitLabServiceTest {
+	 @Autowired RestTemplate retTemplate;
+	/*
+	 * @Autowired RestTemplate retTemplate;
+	 * 
+	 * @Autowired private MockMvc mvc;
+	 * 
+	 * @MockBean private GitlabServiceI service; private List<User> users; private
+	 * List<Project> projects;
+	 * 
+	 * @Test public void gitlabUsersTest() throws Exception {
+	 * 
+	 * Mockito.when(service.getUsers()).thenReturn(users);
+	 * mvc.perform(MockMvcRequestBuilders.get("/GitLabApiController/users").
+	 * contentType(MediaType.APPLICATION_JSON))
+	 * .andExpect(MockMvcResultMatchers.status().isOk());
+	 * 
+	 * }
+	 * 
+	 * @Test public void gitLabProjectsTest() throws Exception {
+	 * Mockito.when(service.getProjects()).thenReturn(projects);
+	 * mvc.perform(MockMvcRequestBuilders.get("/GitLabApiController/users").
+	 * contentType(MediaType.APPLICATION_JSON))
+	 * .andExpect(MockMvcResultMatchers.status().isOk());
+	 * 
+	 * }
+	 * 
+	 * 
+	 * public void getProjectById() {
+	 * Mockito.when(service.getProjectById(1)).thenReturn(projects);
+	 * 
+	 * mvc.perform(MockMvcRequestBuilders.get("/getUserByLName/katkar")
+	 * .contentType(MediaType.APPLICATION_JSON))
+	 * .andExpect(MockMvcResultMatchers.status().isOk()); }
+	 * 
+	 * 
+	 * @Test public void gitLabProjectsTest() throws URISyntaxException { final
+	 * String baseUrl = "http://localhost:8080/GitLabApiController/projects"; URI
+	 * uri = new URI(baseUrl); TestRestTemplate testRestTemplate = new
+	 * TestRestTemplate(); ResponseEntity<Project> response = testRestTemplate.
+	 * getForEntity(uri , Project.class); Assert.assertEquals(200,
+	 * response.getStatusCodeValue()); }
+	 */
+
+	@Test
+	public void gitLabUserTest() throws URISyntaxException {
+		final String baseUrl = "http://localhost:8080/GitLabApiController/users";
+		URI uri = new URI(baseUrl);
+
+		ResponseEntity<User> response = this.retTemplate.getForEntity(uri, User.class);
+		User user = response.getBody();
+		System.out.println(user);
+		Assert.assertEquals(200, response.getStatusCodeValue());
+	}
+
+}

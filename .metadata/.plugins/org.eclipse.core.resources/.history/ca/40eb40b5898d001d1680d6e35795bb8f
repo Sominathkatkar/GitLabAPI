@@ -1,0 +1,24 @@
+package com.sacumen.model;
+
+public class Project {
+
+	private Integer id;
+	private String name;
+	private String description;
+	private String name_with_namespace;
+	private String path;
+	private String path_with_namespace;
+	private String created_at;
+	private String default_branch;
+	private String tag_list;
+	private String topics;
+	private String ssh_url_to_repo;
+	private String http_url_to_repo;
+	private String web_url;
+	private String readme_url;
+	private String avatar_url;
+	private Integer forks_count;
+	private Integer star_count;
+	private String last_activity_at;
+	private String namespace;
+}

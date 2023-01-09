@@ -1,0 +1,65 @@
+package com.sacumen.controller;
+
+import java.util.Arrays;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.sacumen.service.GitlabServiceI;
+
+@RestController
+@RequestMapping("/GitLabApiController")
+public class GitLabApiController {
+
+	private static final Logger logger = LoggerFactory.getLogger(GitLabApiController.class);
+
+	@Autowired
+	private GitlabServiceI service;
+
+	@GetMapping("/get")
+	public String getData() {
+		return "Welcome";
+	}
+
+	@GetMapping("/users")
+	public ResponseEntity<?> getusers(HttpServletRequest httpServletRequest) {
+	
+		List<Object> users=null;
+		try {
+			users = service.getUsers();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+		return new ResponseEntity<Object>(users, HttpStatus.OK);
+	}
+
+	@GetMapping("/projects")
+	public ResponseEntity<Object> getprojects() {
+		List<Object> projects;
+		try {
+			projects = service.getProjects();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+		return new ResponseEntity<Object>(projects, HttpStatus.OK);
+	}
+
+	@GetMapping("/projects/{id}")
+	public String geptprojects(@PathVariable int id) {
+		String byId = service.getProjectById(id);
+		return byId;
+	}
+
+}

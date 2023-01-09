@@ -1,0 +1,46 @@
+package com.sacumen.controllerTest;
+
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import com.sacumen.controller.GitLabApiController;
+import com.sacumen.service.GitlabServiceI;
+
+@WebMvcTest(controllers = GitLabApiController.class)
+@AutoConfigureMockMvc(addFilters = false)
+
+public class GitControllerTest {
+	@Autowired
+	private MockMvc mvc;
+	@MockBean
+	private GitlabServiceI service;
+
+	private List<Object> projects;
+	private List<Object> users;
+
+	@Test
+	public void testGetAllProjects() throws Exception {
+		Mockito.when(service.getProjects()).thenReturn(projects);
+		mvc.perform(MockMvcRequestBuilders.get("/GitLabApiController/projects").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(MockMvcResultMatchers.status().isOk());
+	}
+
+	@Test
+	public void testGetAllUsers() throws Exception {
+		Mockito.when(service.getProjects()).thenReturn(users);
+		mvc.perform(MockMvcRequestBuilders.get("/GitLabApiController/users").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(MockMvcResultMatchers.status().isOk());
+	}
+
+}

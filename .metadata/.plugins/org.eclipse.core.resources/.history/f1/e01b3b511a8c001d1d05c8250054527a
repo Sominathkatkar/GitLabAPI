@@ -1,0 +1,43 @@
+package com.sacumen.service;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.sacumen.exceptions.UserNotFoundException;
+import com.sacumen.model.User;
+
+@Service
+public class GitlabServiceIMPL implements GitlabServiceI {
+
+	@Override
+	public List<User> getUsers() throws UserNotFoundException {
+		String uri="https://gitlab.com/api/v4/users";
+		RestTemplate restTemplate1=new RestTemplate();
+		User[] users = restTemplate1.getForObject(uri, User[].class);
+		List<User> list = Arrays.asList(users);
+		
+		if(list.isEmpty()) {
+			throw new UserNotFoundException("Users not avaialble");
+		}
+		else {
+			return list;
+		}
+		
+	}
+
+	@Override
+	public List<Object> getProjects(){
+		String uri="https://gitlab.com/api/v4/projects";
+		RestTemplate restTemplate1=new RestTemplate();
+		Object[] projects = restTemplate1.getForObject(uri, Object[].class);
+		List<Object> projectslist = Arrays.asList(projects);
+		return projectslist;
+		
+	}
+
+	
+	
+}

@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+D:\Sacumen\GitLabRestAPI\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+688763771.index
+2042703677.index
+3360988759.index
+3903910087.index
+984377622.index
+238437881.index

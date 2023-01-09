@@ -1,0 +1,28 @@
+package com.sacumen.serviceTest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.web.client.RestTemplate;
+
+import com.sacumen.model.User;
+import com.sacumen.service.GitlabServiceI;
+
+public class GitLabServiceTest {
+
+
+    @MockBean
+    private RestTemplate restTemplate;
+
+   @Autowired
+    private GitlabServiceI service;
+   
+   public void gitalabUsersTest() {
+	   User user=new User();
+	   user.setId(1);
+	   user.setUsername("sam");
+	   user.setName("Karan");
+	   user.setAvatar_url("https://secure.gravatar.com/avatar/44ebd1f0fff1651c1c74d40fb0035a3b?s=80&d=identicon");
+	   user.setState("active");
+	   user.setWeb_url("https://gitlab.com/project_22253248_bot");
+   }
+}

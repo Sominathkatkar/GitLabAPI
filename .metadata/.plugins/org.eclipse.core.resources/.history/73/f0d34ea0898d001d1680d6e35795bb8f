@@ -1,0 +1,5 @@
+package com.sacumen.model;
+
+public class Project {
+
+}

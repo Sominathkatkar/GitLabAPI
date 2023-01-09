@@ -1,0 +1,5 @@
+package com.sacumen.config;
+
+public class MySecurityAdapter {
+
+}

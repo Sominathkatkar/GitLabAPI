@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="GitControllerTest" project="GitLabRestAPI" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="com.sacumen.controllerTest.GitControllerTest" time="0.211" displayname="GitControllerTest" uniqueid="[engine:junit-jupiter]/[class:com.sacumen.controllerTest.GitControllerTest]">
+    <testcase name="testGetAllUsers" classname="com.sacumen.controllerTest.GitControllerTest" time="0.173" displayname="testGetAllUsers()" uniqueid="[engine:junit-jupiter]/[class:com.sacumen.controllerTest.GitControllerTest]/[method:testGetAllUsers()]"/>
+    <testcase name="testGetAllProjects" classname="com.sacumen.controllerTest.GitControllerTest" time="0.029" displayname="testGetAllProjects()" uniqueid="[engine:junit-jupiter]/[class:com.sacumen.controllerTest.GitControllerTest]/[method:testGetAllProjects()]"/>
+  </testsuite>
+</testrun>

@@ -1,0 +1,11 @@
+package com.sacumen.service;
+
+import java.util.List;
+
+import com.sacumen.model.User;
+
+public interface GitlabServiceI {
+	
+	public User[] getUsers();
+
+}
